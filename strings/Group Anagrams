@@ -1,0 +1,30 @@
+"""
+Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+Example :
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+"""
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        if not strs:
+            return []
+        
+        n = len(strs)
+        groups = {}
+        results = []
+        
+        for i in range(n):
+            sorted_word = sorted(strs[i])
+            new_word = "".join(sorted_word)
+            if new_word in groups:
+                groups[new_word].append(strs[i])
+            else:
+                groups[new_word] = [strs[i]]
+            
+        
+        for val in groups.values():
+            results.append(val)
+        
+        return results
+            
